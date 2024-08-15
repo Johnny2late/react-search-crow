@@ -18,20 +18,6 @@ module.exports = {
   overrides: [
     {
       files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
-      rules: {
-        'simple-import-sort/imports': [
-          'warn',
-          {
-            groups: [
-              ['^react', '^[^.@]\\w'],
-              ['^(@|components)'],
-              ['^\\u0000'],
-              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$', '^\\.\\.(?!/?$)', '^\\.\\./?$'],
-              ['^.+\\.?(css)$', '^.+\\.?(sass)$'],
-            ],
-          },
-        ],
-      },
     },
   ],
   parser: '@typescript-eslint/parser',
@@ -42,10 +28,8 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
-    'eslint-plugin-simple-import-sort',
     'eslint-plugin-import',
     'eslint-plugin-react',
-    'simple-import-sort',
     'prettier',
   ],
   rules: {
@@ -68,7 +52,5 @@ module.exports = {
     'no-empty-pattern': 'off',
     'no-case-declarations': 'off',
     'prettier/prettier': 'error',
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
   },
 }

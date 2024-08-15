@@ -14,9 +14,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: install modules
         run: npm install
-      - name: build project
-        run: npm run build
       - name: react test
         run: npm test
       - name: lint code
         run: npm run lint
+      - name: lint code fix
+        run: npm run lint -- --fix
+      - name: build project
+        run: npm run build

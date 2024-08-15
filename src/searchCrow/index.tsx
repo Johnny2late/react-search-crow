@@ -1,9 +1,8 @@
-import React, { forwardRef, FC, useEffect, useState, useRef, useImperativeHandle } from 'react'
-
-import { addClassesTypes, Any, CrowSearchProps } from './types'
+import React, { FC, forwardRef, useEffect, useState, useRef, useImperativeHandle } from 'react'
 
 import { onSearchCrow } from './onSearchCrow'
 import { useClickOutside, useGetListPosition } from './hooks'
+import { addClassesTypes, Any, CrowSearchProps } from './types'
 
 import './style.css'
 
@@ -32,9 +31,9 @@ export const SearchCrow: FC<CrowSearchProps> = forwardRef(
       debounce = 0,
       // callback that returns the search results
       onSearchResults = () => {},
-      // collback that returns the selected item
+      // callback that returns the selected item
       onSelect = () => {},
-      // collback that returns true/false on loading
+      // callback that returns true/false on loading
       onLoad = () => {},
       // callback that is executed if onFocus
       onFocus = () => {},
