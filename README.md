@@ -1,46 +1,160 @@
-# Getting Started with Create React App
+# React-search-crow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React search crow
 
-## Available Scripts
+# SearchCrow Component
 
-In the project directory, you can run:
+The SearchCrow component is a React component that provides a search functionality with a dropdown list of results. It allows you to customize various aspects of the search behavior and appearance.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- It is capable of searching for any type of array and any nesting
+- Allows you to pass your own list of items to search through
+- Supports searching excluding certain keys, and displaying specific keys in the dropdown list
+- Provides callbacks for search results, item selection, loading state, focus/blur events, and clear events
+- Supports buttonless search, disabled selection, closing the list on selection, and showing/hiding various UI elements
+- Allows customizing the placeholder, label, button text, loader text, and no results text
+- Supports changing the dropdown position if it rests at the bottom of the window
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Install
 
-### `npm test`
+### `npm instal react-search-crow`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `yarn add react-search-crow`
 
-### `npm run build`
+## Usage
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+import { SearchCrow } from 'searchCrow'
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const MyComponent = () => {
+  const handleSearchResults = (results) => {
+    // Handle search results
+  }
+  const handleSelect = (item) => {
+    // Handle item selection
+  }
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  return (
+    <SearchCrow
+      items={[...]}
+      onSearchResults={handleSearchResults}
+      onSelect={handleSelect}
+      // Other props
+    />
+  )
+}
+```
 
-### `npm run eject`
+## Props
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The SearchCrow component accepts the following props:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- prettier-ignore -->
+| Prop                     | Type                    | Default         | Description                                                          |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `children`               | React.ReactNode         | `null`          | Custom content to be rendered inside the component.                  |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `items`                  | any[]                   | `[]`            | Array of items to search through.                                    |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `keyId`                  | string                  | `''`            | Key to use as the unique identifier for each item.                   |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `excludesKeys`           | string[]                | `[]`            | Array of keys to exclude from the search.                            |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `keysShowValue`          | string[]                | `[]`            | Array of keys whose values should be displayed in the dropdown list. |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `searchByKeyAfterSelect` | string                  | `''`            | Key to use for searching after an item is selected.                  |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `separatorValue`         | string                  | `', '`          | Separator to use for displaying multiple values in the input field.  |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `value`                  | string                  | `''`            | Initial value of the search input.                                   |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `debounce`               | number                  | `0`             | Delay time (in milliseconds) for the search results.                 |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onSearchResults`        | function                | `() => {}`      | Callback that returns the search results.                            |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onSelect`               | function                | `() => {}`      | Callback that returns the selected item.                             |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onLoad`                 | function                | `() => {}`      | Callback that returns the loading state.                             |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onFocus`                | function                | `() => {}`      | Callback that is executed on input focus.                            |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onBlur`                 | function                | `() => {}`      | Callback that is executed on input blur.                             |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onClear`                | function                | `() => {}`      | Callback that is executed on clear.                                  |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `onlyVertexSearch`       | boolean                 | `false`         | Whether to search only by vertices, excluding nested arrays.         |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `autoSearch`             | boolean                 | `false`         | Whether to perform the search automatically without a button.        |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `disabledSelect`         | boolean                 | `false`         | Whether to disable selection of items.                               |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `closeOnSelect`          | boolean                 | `false`         | Whether to close the dropdown list when an item is selected.         |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `withClear`              | boolean                 | `true`          | Whether to show the clear button.                                    |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `withBtn`                | boolean                 | `true`          | Whether to show the search button.                                   |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `withDropdown`           | boolean                 | `true`          | Whether to show the dropdown list of results.                        |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `withLoader`             | boolean                 | `true`          | Whether to show the loader.                                          |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `disabled`               | boolean                 | `false`         | Whether to disable the search input.                                 |
+| -------------------------| ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `autoFocus`              | boolean                 | `false`         | Whether to focus the search input on mount.                          |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `changeDropdownPosition` | boolean                 | `true`          | Whether to change the dropdown position if it rests at the bottom.   |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `placeholder`            | string                  | `'text...'`     | Placeholder text for the search input.                               |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `label`                  | string                  | `'Search'`      | Label text for the search input.                                     |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `btnText`                | string                  | `'Search'`      | Text for the search button.                                          |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `loaderText`             | string                  | `'Loading'`     | Text for the loader.                                                 |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `noResultsText`          | string                  | `'No results:'` | Text to display when there are no search results.                    |
+| ------------------------ | ----------------------- | --------------- | -------------------------------------------------------------------- |
+| `addClasses`             | {wrapper: string        | `{}`            | Custom CSS classes to apply to the component.                        |
+|                          | label: string           |                 |                                                                      |
+|                          | inputForm: string       |                 |                                                                      |
+|                          | input: string           |                 |                                                                      |
+|                          | clear: string           |                 |                                                                      |
+|                          | button: string          |                 |                                                                      |
+|                          | loader: string          |                 |                                                                      |
+|                          | dropdownWrapper: string |                 |                                                                      |
+|                          | dropdown: string        |                 |                                                                      |
+|                          | dropdownItem: string}   |                 |                                                                      |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## onSearchCrow Function
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The onSearchCrow function is a utility function that can be used to perform a search on a list of items. It takes the following parameters:
 
-## Learn More
+## Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- prettier-ignore -->
+```javascript 
+import { onSearchCrow } from 'searchCrow/onSearchCrow'
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+onSearchCrow([...], 'search text' ['id'], false)
+```
+
+- list: An array of elements of any type and nesting.
+- value: The search query.
+- excludesKeys: An optional array of keys to exclude from the search.
+- onlyVertexSearch: A boolean indicating whether to search only by vertices, excluding nested arrays.
+
+The function returns an array of items that match the search query.
+
+You can use this function for your own search or sort arrays by found values.
+
+## Development
+
+1. Clone the repository.
+2. Install the dependencies using npm install or yarn install.
+3. Start the development server using npm start or yarn start.
+4. Open the project in your browser at http://localhost:3000.
+
+## Contribution
+
+If you find any problems or have suggestions for improvement. Feel free to submit a pull request. Email me at german.work11@gmail.com
