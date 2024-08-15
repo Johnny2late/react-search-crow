@@ -86,16 +86,22 @@ The SearchCrow component accepts the following props:
 | `btnText`                | string                  | `'Search'`      | Text for the search button.                                          |
 | `loaderText`             | string                  | `'Loading'`     | Text for the loader.                                                 |
 | `noResultsText`          | string                  | `'No results:'` | Text to display when there are no search results.                    |
-| `addClasses`             | {wrapper: string        | `{}`            | Custom CSS classes to apply to the component.                        |
-|                          | label: string           |                 |                                                                      |
-|                          | inputForm: string       |                 |                                                                      |
-|                          | input: string           |                 |                                                                      |
-|                          | clear: string           |                 |                                                                      |
-|                          | button: string          |                 |                                                                      |
-|                          | loader: string          |                 |                                                                      |
-|                          | dropdownWrapper: string |                 |                                                                      |
-|                          | dropdown: string        |                 |                                                                      |
-|                          | dropdownItem: string}   |                 |                                                                      |
+| `addClasses`             | `addClassesTypes`       | `{}`            | Custom CSS classes to apply to the component.                        |
+
+## addClassesTypes
+
+| Class             | Type   | Default |
+| ----------------- | ------ | ------- |
+| `wrapper`         | string | `''`    |
+| `label`           | string | `''`    |
+| `inputForm`       | string | `''`    |
+| `input`           | string | `''`    |
+| `clear`           | string | `''`    |
+| `button`          | string | `''`    |
+| `loader`          | string | `''`    |
+| `dropdownWrapper` | string | `''`    |
+| `dropdown`        | string | `''`    |
+| `dropdownItem`    | string | `''`    |
 
 ## onSearchCrow Function
 
@@ -110,10 +116,12 @@ import { onSearchCrow } from 'searchCrow/onSearchCrow'
 onSearchCrow([...], 'search text' ['id'], false)
 ```
 
-- list: An array of elements of any type and nesting.
-- value: The search query.
-- excludesKeys: An optional array of keys to exclude from the search.
-- onlyVertexSearch: A boolean indicating whether to search only by vertices, excluding nested arrays.
+| Arguments          | Type     | Default | Description                                                                       |
+| ------------------ | -------- | ------- | --------------------------------------------------------------------------------- |
+| `list`             | any[]    | `[]`    | An array of elements of any type and nesting.                                     |
+| `value`            | string   | `''`    | The search query.                                                                 |
+| `excludesKeys`     | string[] | `[]`    | An optional array of keys to exclude from the search.                             |
+| `onlyVertexSearch` | boolean  | `false` | A boolean indicating whether to search only by vertices, excluding nested arrays. |
 
 The function returns an array of items that match the search query.
 
