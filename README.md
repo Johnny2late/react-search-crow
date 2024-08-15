@@ -2,7 +2,7 @@
 
 React search crow
 
-![Crow](https://raw.githubusercontent.com/Johnny2late/react-search-crow/238c5161c5f0653a3dab17e20a24a19b32017f96/search-crow.png)
+<img src="https://raw.githubusercontent.com/Johnny2late/react-search-crow/238c5161c5f0653a3dab17e20a24a19b32017f96/search-crow.png" width="300" height="300" alt="Crow">
 
 # SearchCrow Component
 
@@ -60,8 +60,8 @@ The SearchCrow component accepts the following props:
 | `keyId`                  | string                  | `''`            | Key to use as the unique identifier for each item.                   |
 | `excludesKeys`           | string[]                | `[]`            | Array of keys to exclude from the search.                            |
 | `keysShowValue`          | string[]                | `[]`            | Array of keys whose values should be displayed in the dropdown list. |
-| `searchByKeyAfterSelect` | string                  | `''`            | Key to use for searching after an item is selected.                  |
-| `separatorValue`         | string                  | `', '`          | Separator to use for displaying multiple values in the input field.  |
+| `searchByKeyAfterSelect` | string                  | `''`            | Key to use for searching after an item is selected. The key must not match a key from the excludesKeys list.                |
+| `separatorValue`         | string                  | `', '`          | Separator to use for displaying multiple values in the input field. Space must not be used and if children is used - use the same separator as in children.  |
 | `value`                  | string                  | `''`            | Initial value of the search input.                                   |
 | `debounce`               | number                  | `0`             | Delay time (in milliseconds) for the search results.                 |
 | `onSearchResults`        | function                | `() => {}`      | Callback that returns the search results.                            |
