@@ -1,7 +1,19 @@
 {
   "name": "react-search-crow",
   "version": "0.1.2",
-  "private": true,
+  "description": "This Crow will find everything",
+  "main": "./src/searchCrow/index.js",
+  "exports": {
+    ".": {
+        "require": "./src/searchCrow/index.js",
+        "import": "./src/searchCrow/index.js",
+        "types": "./src/searchCrow/types.ts"
+    },
+    "./onSearchCrow": {
+        "require": "./src/searchCrow/onSearchCrow.js",
+        "import": "./src/searchCrow/onSearchCrow.js"
+    }
+  },
   "dependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.105",
@@ -11,27 +23,6 @@
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "lint:fix": "npm run lint -- --fix",
-    "prepare": "husky"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -54,5 +45,28 @@
       "prettier --write --ignore-unknown",
       "git add"
     ]
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky"
+  },
+  "repository": "https://github.com/Johnny2late/react-search-crow.git",
+  "keywords": [
+    "search",
+    "react",
+    "search",
+    "react",
+    "react-component"
+  ],
+  "author": "J0hnnY2late",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Johnny2late/react-search-crow/issues"
+  },
+  "homepage": "https://github.com/Johnny2late/react-search-crow#readme"
 }
