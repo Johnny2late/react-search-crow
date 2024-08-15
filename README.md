@@ -2,6 +2,8 @@
 
 React search crow
 
+![Crow](https://raw.githubusercontent.com/Johnny2late/react-search-crow/238c5161c5f0653a3dab17e20a24a19b32017f96/search-crow.png)
+
 # SearchCrow Component
 
 The SearchCrow component is a React component that provides a search functionality with a dropdown list of results. It allows you to customize various aspects of the search behavior and appearance.
