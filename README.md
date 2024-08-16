@@ -20,7 +20,7 @@ The SearchCrow component is a React component that provides a search functionali
 
 ## Install
 
-```javascript 
+```javascript
 npm instal react-search-crow
 ```
 
@@ -130,8 +130,8 @@ You can use this function for your own search or sort arrays by found values.
 ## Development
 
 1. Clone the repository.
-2. Install the dependencies using npm install or yarn install.
-3. Start the development server using npm start or yarn start.
+2. Install the dependencies using npm install.
+3. Start the development server using npm start.
 4. Open the project in your browser at http://localhost:3000.
 
 ## Contribution

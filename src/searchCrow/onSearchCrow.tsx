@@ -134,12 +134,8 @@ function iteratinghHardArray<T>(
   return [...result, ...left, ...right]
 }
 function getMidItem(item: Any, excludes: string[]): Any {
-  let value = ''
-
   for (const key of Object.keys(item)) {
     if (!excludes.includes(key)) {
-      // eslint-disable-next-line
-      value = item[key]
       break
     }
   }

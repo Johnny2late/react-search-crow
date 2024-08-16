@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,11 +13,27 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "noImplicitAny": true,
+    "noEmit": false,
     "strictNullChecks": false,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "jsx": "react",
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "baseUrl": "./",
+    "paths": {
+      "src": [ "src/*" ],
+      "index": [ "src/searchCrow" ],
+      "searchCrow": [ "src/searchCrow/*" ],
+    }
   },
-  "exclude": ["node_modules", "**/node_modules/*", "build"]
+  "exclude": [
+    "node_modules",
+    "build",
+    "coverage",
+    "webpack.*.js",
+    "*.config.js",
+    "**/*.test.ts*"
+  ]
 }
