@@ -44,7 +44,7 @@ module.exports = (_env, argv) => {
             new CleanWebpackPlugin(),
             new WebpackNotifierPlugin({ alwaysNotify: false }),
         ],
-        entry: ['./src'],
+        entry: ['./src/searchCrow'],
         output: {
             filename: watchMode ? '[name].js' : 'react-search-crow.js',
             path: path.join(__dirname, 'dist'),

@@ -103,7 +103,7 @@ The SearchCrow component accepts the following props:
 | `dropdown`        | string | `''`    |
 | `dropdownItem`    | string | `''`    |
 
-## onSearchCrow Function
+## SearchCrow Function
 
 The onSearchCrow function is a utility function that can be used to perform a search on a list of items. It takes the following parameters:
 
@@ -131,9 +131,9 @@ You can use this function for your own search or sort arrays by found values.
 
 1. Clone the repository.
 2. Install the dependencies using npm install.
-3. Start the development server using npm start.
+3. Start the development server using npm watch.
 4. Open the project in your browser at http://localhost:3000.
 
 ## Contribution
 
-If you find any problems or have suggestions for improvement. Feel free to submit a pull request. Email me at german.work11@gmail.com
+If you find any problems or have suggestions for improvement. Feel free to submit a pull request. Create issues. Email me at german.work11@gmail.com
