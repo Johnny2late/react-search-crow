@@ -31,10 +31,13 @@ package-lock.json
 
 .gitignore
 
-/src
+/src/.prettierrc
+/src/react-app-env.d.ts
+/src/setupTests.ts
 
 /.github
 /.husky
 
 /example
 /public
+/dist

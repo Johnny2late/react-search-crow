@@ -2,8 +2,6 @@ name: GitHub Actions
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 jobs:
   init:
     runs-on: ubuntu-latest
