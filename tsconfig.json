@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ES5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -24,8 +23,6 @@
     "baseUrl": "./",
     "paths": {
       "src": [ "src/*" ],
-      "index": [ "src/searchCrow" ],
-      "searchCrow": [ "src/searchCrow/*" ],
     }
   },
   "exclude": [
@@ -34,6 +31,7 @@
     "coverage",
     "webpack.*.js",
     "*.config.js",
-    "**/*.test.ts*"
+    "**/*.test.ts*",
+    "dist"
   ]
 }
