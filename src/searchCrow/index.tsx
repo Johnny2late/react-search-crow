@@ -130,7 +130,7 @@ export const SearchCrow: FC<CrowSearchProps> = forwardRef(
       if (!isOpenList) setIsOpenList(true)
     }
 
-    const onSearch = (val?: string, el?: Any) => {
+    const onSearch = (val: string, el?: Any) => {
       const newVal = val.toString().split(separatorValue)[0].replace(separatorValue.trim(), '')
 
       if (closeOnSelect) {
