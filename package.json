@@ -1,8 +1,14 @@
 {
   "name": "react-search-crow",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "This Crow will find everything",
   "main": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js"
+    }
+  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
