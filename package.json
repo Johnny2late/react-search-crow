@@ -1,6 +1,6 @@
 {
   "name": "react-search-crow",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "This Crow will find everything",
   "main": "./src/searchCrow/index.tsx",
   "exports": {
