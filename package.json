@@ -1,18 +1,13 @@
 {
   "name": "react-search-crow",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "This Crow will find everything",
-  "main": "./index.js",
+  "main": "./src/searchCrow/index.js",
   "exports": {
-    ".": {
-      "require": "./searchCrow/index.js",
-      "import": "./searchCrow/index.js",
-      "types": "./searchCrow/types.ts"
-    },
     "./onSearchCrow": {
-      "require": "./searchCrow/onSearchCrow.js",
-      "import": "./searchCrow/onSearchCrow.js",
-      "types": "./searchCrow/types.ts"
+      "require": "./src/searchCrow/onSearchCrow.js",
+      "import": "./src/searchCrow/onSearchCrow.js",
+      "types": "./src/searchCrow/types.ts"
     }
   },
   "dependencies": {
