@@ -1,6 +1,6 @@
 {
   "name": "react-search-crow",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "This Crow will find everything",
   "main": "./index.js",
   "dependencies": {
@@ -26,6 +26,7 @@
     "husky": "^9.1.4",
     "lint-staged": "^15.2.9",
     "prettier": "3.3.3",
+    "source-map-loader": "^5.0.0",
     "typescript-eslint": "^8.1.0"
   },
   "lint-staged": {
