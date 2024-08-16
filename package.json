@@ -1,14 +1,12 @@
 {
   "name": "react-search-crow",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "This Crow will find everything",
-  "main": "./src/searchCrow/index.tsx",
+  "main": "./index.js",
   "exports": {
     ".": {
-      "import": "./src/searchCrow/index.tsx"
-    },
-    "./onSearchCrow": {
-      "import": "./src/searchCrow/onSearchCrow.tsx"
+      "import": "./index.js",
+      "require": "./index.js"
     }
   },
   "dependencies": {

@@ -13,7 +13,7 @@ export type addClassesTypes = {
 // eslint-disable-next-line
 export type Any = any
 
-export interface CrowSearchProps {
+export interface SearchCrowProps {
   ref?: Any
   items?: unknown[]
   excludesKeys?: string[]
