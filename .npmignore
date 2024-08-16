@@ -24,15 +24,17 @@ yarn-error.log*
 .eslintignore
 eslint.config.mjs
 tsconfig.json
+webpack.config.js
+.babelrc
+
+package-lock.json
 
 .gitignore
 
-/src/example
-/src/.prettierrc
-/src/react-app-env.d.ts
-/src/setupTests.ts
+/src
 
 /.github
 /.husky
 
+/example
 /public
