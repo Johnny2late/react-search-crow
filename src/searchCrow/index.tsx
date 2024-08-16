@@ -2,11 +2,11 @@ import React, { FC, forwardRef, useEffect, useState, useRef, useImperativeHandle
 
 import { onSearchCrow } from './onSearchCrow'
 import { useClickOutside, useGetListPosition } from './hooks'
-import { addClassesTypes, Any, CrowSearchProps } from './types'
+import { addClassesTypes, Any, SearchCrowProps } from './types'
 
 import './style.css'
 
-export const SearchCrow: FC<CrowSearchProps> = forwardRef(
+export const SearchCrow: FC<SearchCrowProps> = forwardRef(
   (
     {
       // you can pass your own list
@@ -75,7 +75,7 @@ export const SearchCrow: FC<CrowSearchProps> = forwardRef(
       noResultsText = 'No results:',
       // custom classes
       addClasses = {},
-    }: CrowSearchProps,
+    }: SearchCrowProps,
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null)
