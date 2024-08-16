@@ -1,8 +1,13 @@
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const path = require("path")
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const TerserPlugin = require('terser-webpack-plugin')
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const WebpackNotifierPlugin = require('webpack-notifier')
+// eslint-disable-next-line @typescript-eslint/no-require-imports, no-undef
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+// eslint-disable-next-line no-undef
 module.exports = (_env, argv) => {
     const watchMode = argv.liveReload || false
 
@@ -22,7 +27,7 @@ module.exports = (_env, argv) => {
         },
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".jsx"],
-            alias: {
+            alias: {// eslint-disable-next-line no-undef
                 searchCrow: path.join(__dirname, "./src/searchCrow/"),
             },
         },
@@ -47,6 +52,7 @@ module.exports = (_env, argv) => {
         entry: ['./src'],
         output: {
             filename: watchMode ? '[name].js' : 'react-search-crow.js',
+            // eslint-disable-next-line no-undef
             path: path.join(__dirname, 'dist'),
             publicPath: '/',
         },
