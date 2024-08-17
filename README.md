@@ -20,8 +20,7 @@ The SearchCrow component is a React component that provides a search functionali
 
 ## Install
 
-##
-<tab><tab>npm instal react-search-crow
+`npm instal react-search-crow`
 
 ## Usage
 
@@ -108,7 +107,7 @@ The onSearchCrow function is a utility function that can be used to perform a se
 
 ## Usage
 
-```javascript 
+```javascript
 import { onSearchCrow } from 'searchCrow'
 
 onSearchCrow([...], 'search text' ['id'], false)

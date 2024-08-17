@@ -114,8 +114,8 @@ function setStyles({
     const spaceTop = fieldRef.current?.getBoundingClientRect().top || 0
     const spaceBottom = fieldRef.current?.getBoundingClientRect().bottom || 0
 
-    if (onTop) return spaceTop - height - 10
-    else return spaceBottom + 10
+    if (onTop) return spaceTop - height - 5
+    else return spaceBottom + 5
   }
 
   if (fieldRef.current && listRef.current && isOpenList) {
