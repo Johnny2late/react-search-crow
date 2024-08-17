@@ -5,12 +5,14 @@ import { addClassesTypes, Any, SearchCrowProps } from './types'
 
 import './style.css'
 
-export function onSearchCrow<T>(
-  list: T[],
+// onSearchCrow function
+
+function onSearchCrow(
+  list: Any[],
   value: string,
   excludesKeys: string[] = [],
   onlyVertexSearch = false,
-): T[] {
+): Any[] {
   const newValue = value.toString().toLowerCase().trim()
 
   if (newValue === '') return []
@@ -24,15 +26,15 @@ export function onSearchCrow<T>(
   }
 }
 
-function iteratingSimpleArray<T>(
-  list: T[],
+function iteratingSimpleArray(
+  list: Any[],
   value: string,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): T[] {
-  const result: T[] = []
+): Any[] {
+  const result: Any[] = []
 
-  function isType(item: T, type: string) {
+  function isType(item: Any, type: string) {
     return typeof item === type
   }
 
@@ -72,19 +74,19 @@ function iteratingSimpleArray<T>(
   return result
 }
 
-function iteratinghHardArray<T>(
-  list: T[],
+function iteratinghHardArray(
+  list: Any[],
   value: string,
   start: number,
   end: number,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): T[] {
+): Any[] {
   if (start > end) return []
 
   const mid = Math.floor((start + end) / 2)
   const midItem = getMidItem(list[mid], excludesKeys)
-  const result: T[] = []
+  const result: Any[] = []
 
   function isType(type: string) {
     return typeof midItem === type
@@ -138,6 +140,7 @@ function iteratinghHardArray<T>(
 
   return [...result, ...left, ...right]
 }
+
 function getMidItem(item: Any, excludes: string[]): Any {
   for (const key of Object.keys(item)) {
     if (!excludes.includes(key)) {
@@ -151,74 +154,42 @@ function isIncludes(a: number | string, value: string): boolean {
   return a.toString().toLowerCase().replaceAll(' ', '').includes(value.replaceAll(' ', ''))
 }
 
-export const SearchCrow: FC<SearchCrowProps> = forwardRef(
+// SearchCrow component
+
+const SearchCrow: FC<SearchCrowProps> = forwardRef(
   (
     {
-      // you can pass your own list
       children,
-      // array of any type
       items = [],
-      // Key for the list item. Defaults to index
       keyId = '',
-      // keys to exclude from the search
       excludesKeys = [],
-      // keys whose values are displayed in the drop-down list
       keysShowValue = [],
-      // if an array of objects, it is necessary to specify by which key to search after selection. The key must not match a key from the excludesKeys list
       searchByKeyAfterSelect = '',
-      // separator of output values.
-      // It is obligatory to specify if several values are output.
-      // Space must not be used and if children is used - use the same separator as in children.
       separatorValue = ', ',
-      // value to be written to the input
       value = '',
-      // result output delay time
       debounce = 0,
-      // callback that returns the search results
       onSearchResults = () => {},
-      // callback that returns the selected item
       onSelect = () => {},
-      // callback that returns true/false on loading
       onLoad = () => {},
-      // callback that is executed if onFocus
       onFocus = () => {},
-      // callback which is executed if onBlur
       onBlur = () => {},
-      // callback that is executed if onClear
       onClear = () => {},
-      // search only by vertices if it is necessary to exclude search by nested arrays
       onlyVertexSearch = false,
-      // buttonless search
       autoSearch = false,
-      // disallow selection
       disabledSelect = false,
-      // close the list if the item is selected
       closeOnSelect = false,
-      // show the clear
       withClear = true,
-      // show the button search
       withBtn = true,
-      // show the list results
       withDropdown = true,
-      // show the loader
       withLoader = true,
-      // disabled search
       disabled = false,
-      // post-mount focus
       autoFocus = false,
-      // change the position of the list if it rests at the bottom of the window
       changeDropdownPosition = true,
-      // text placeholder
       placeholder = 'text...',
-      // text label
       label = 'Search',
-      // text search button
       btnText = 'Search',
-      // text loader
       loaderText = 'Loading',
-      // text no Results
       noResultsText = 'No results:',
-      // custom classes
       addClasses = {},
     }: SearchCrowProps,
     ref,
@@ -436,3 +407,5 @@ export const SearchCrow: FC<SearchCrowProps> = forwardRef(
 )
 
 SearchCrow.displayName = 'SearchCrow'
+
+export { SearchCrow, onSearchCrow }

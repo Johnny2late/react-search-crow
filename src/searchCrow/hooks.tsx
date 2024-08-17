@@ -3,7 +3,7 @@ import { Any } from './types'
 
 //  Dropdown Position
 
-interface StylesTypes {
+interface StylesPositionTypes {
   width?: string
   top?: string
 }
@@ -17,7 +17,7 @@ export const useGetListPosition = ({
   itemsLength?: number
   execute: boolean
 }) => {
-  const [dropdownStyles, setDropdownStyles] = useState<StylesTypes>({
+  const [dropdownStyles, setDropdownStyles] = useState<StylesPositionTypes>({
     width: '',
     top: '',
   })
@@ -30,7 +30,7 @@ export const useGetListPosition = ({
 
   useLayoutEffect(() => {
     if (execute) {
-      setDropdownStyles((prev: StylesTypes): StylesTypes => {
+      setDropdownStyles((prev: StylesPositionTypes): StylesPositionTypes => {
         let width
         if (fieldRef.current) width = fieldRef.current.offsetWidth.toString()
 
@@ -40,7 +40,7 @@ export const useGetListPosition = ({
   }, [])
 
   function getStyles() {
-    const styles: StylesTypes = setStyles({
+    const styles: StylesPositionTypes = setStyles({
       isOpenList,
       fieldRef,
       listRef,
@@ -92,7 +92,7 @@ function setStyles({
   listRef: React.RefObject<HTMLDivElement>
   initHeightRef: React.RefObject<number | null>
   setParent: (parent: HTMLElement | null) => void
-}): StylesTypes {
+}): StylesPositionTypes {
   function getScrollParent(node: {
     scrollHeight: number
     clientHeight: number
@@ -114,8 +114,8 @@ function setStyles({
     const spaceTop = fieldRef.current?.getBoundingClientRect().top || 0
     const spaceBottom = fieldRef.current?.getBoundingClientRect().bottom || 0
 
-    if (onTop) return spaceTop - height - 5
-    else return spaceBottom + 5
+    if (onTop) return spaceTop - height - 10
+    else return spaceBottom + 10
   }
 
   if (fieldRef.current && listRef.current && isOpenList) {
