@@ -20,9 +20,8 @@ The SearchCrow component is a React component that provides a search functionali
 
 ## Install
 
-```javascript
-npm instal react-search-crow
-```
+##
+<tab><tab>npm instal react-search-crow
 
 ## Usage
 
@@ -31,10 +30,10 @@ import { SearchCrow } from 'searchCrow'
 
 const MyComponent = () => {
   const handleSearchResults = (results) => {
-    // Handle search results
+    // Handle {search} results
   }
   const handleSelect = (item) => {
-    // Handle item selection
+    // Handle {item} selection
   }
 
   return (
@@ -42,7 +41,7 @@ const MyComponent = () => {
       items={[...]}
       onSearchResults={handleSearchResults}
       onSelect={handleSelect}
-      // Other props
+      // ...props
     />
   )
 }
@@ -109,9 +108,8 @@ The onSearchCrow function is a utility function that can be used to perform a se
 
 ## Usage
 
-<!-- prettier-ignore -->
 ```javascript 
-import { onSearchCrow } from 'searchCrow/onSearchCrow'
+import { onSearchCrow } from 'searchCrow'
 
 onSearchCrow([...], 'search text' ['id'], false)
 ```
@@ -136,4 +134,8 @@ You can use this function for your own search or sort arrays by found values.
 
 ## Contribution
 
-If you find any problems or have suggestions for improvement. Feel free to submit a pull request. Create issues. Email me at german.work11@gmail.com
+If you find any problems or have suggestions for improvement:
+
+- Feel free to submit a pull request.
+- Create issues.
+- Email me at german.work11@gmail.com
