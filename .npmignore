@@ -35,3 +35,5 @@ package-lock.json
 
 /.github
 /.husky
+
+/example

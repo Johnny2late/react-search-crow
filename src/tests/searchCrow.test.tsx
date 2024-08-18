@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { SearchCrow } from './index'
+import { SearchCrow } from '../searchCrow/index'
 
 describe('SearchCrow', () => {
   const defaultProps = {

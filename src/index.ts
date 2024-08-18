@@ -1,1 +1,2 @@
-export { SearchCrow, onSearchCrow } from './searchCrow'
+export { SearchCrow } from './searchCrow'
+export { onSearchCrow } from './searchCrow/onSearchCrow'
