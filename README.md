@@ -88,6 +88,9 @@ The SearchCrow component accepts the following props:
 | `noResultsText`          | string                  | `'No results:'` | Text to display when there are no search results.                    |
 | `addClasses`             | `addClassesTypes`       | `{}`            | Custom CSS classes to apply to the component.                        |
 
+<!-- prettier-ignore -->
+##
+
 ## addClassesTypes
 
 | Class             | Type   | Default |
@@ -103,6 +106,9 @@ The SearchCrow component accepts the following props:
 | `dropdown`        | string | `''`    |
 | `dropdownItem`    | string | `''`    |
 
+##
+
+<!-- prettier-ignore -->
 ## SearchCrow Function
 
 The onSearchCrow function is a utility function that can be used to perform a search on a list of items. It takes the following parameters:
@@ -126,12 +132,18 @@ The function returns an array of items that match the search query.
 
 You can use this function for your own search or sort arrays by found values.
 
+## Engines
+
+```
+react: 18.3.1
+typescript: 4.9.5
+node: >=14.0.0
+```
+
 ## Development
 
 1. Clone the repository.
 2. Install the dependencies using npm install.
-3. Start the development server using npm watch.
-4. Open the project in your browser at http://localhost:3000.
 
 ## Contribution
 
