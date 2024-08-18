@@ -20,12 +20,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.prettierrc
 .eslintrc.js
 .eslintignore
 eslint.config.mjs
 tsconfig.json
 webpack.config.js
 rollup.config.js
+
 
 package-lock.json
 
@@ -37,3 +39,4 @@ package-lock.json
 /.husky
 
 /example
+/public
