@@ -16,6 +16,7 @@ function Example() {
     console.log(searchResults) // [{ id: 4, value: 'text 4', price: '5$' }, {id: 6, value: 'text 6', price: '7$', children: [{ id: 37, value: 'text 37', children: [{ id: 399, value: 'text 4' }],},],},]
   }, [searchResults, selectItem])
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function generateVeryLongArray(size: number) {
     const result: Any = []
 
