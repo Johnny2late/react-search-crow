@@ -40,3 +40,5 @@ package-lock.json
 
 /example
 /public
+/dist/index.js.map
+/dist/index.mjs.map

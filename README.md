@@ -2,7 +2,9 @@
 
 React search crow
 
-<img src="https://raw.githubusercontent.com/Johnny2late/react-search-crow/238c5161c5f0653a3dab17e20a24a19b32017f96/search-crow.png" width="300" height="300" alt="Crow">
+<p align="center" dir="auto">
+  <img src="https://drive.google.com/file/d/1K0nYlWsqYH3S8U616tHPuUb6GI0sLf7u/view?usp=sharing" width="250" height="250" alt="Crow">
+</p>
 
 # SearchCrow Component
 
