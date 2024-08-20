@@ -90,9 +90,6 @@ The SearchCrow component accepts the following props:
 | `noResultsText`          | string                  | `'No results:'` | Text to display when there are no search results.                    |
 | `addClasses`             | `addClassesTypes`       | `{}`            | Custom CSS classes to apply to the component.                        |
 
-<!-- prettier-ignore -->
-##
-
 ## addClassesTypes
 
 | Class             | Type   | Default |
@@ -108,9 +105,6 @@ The SearchCrow component accepts the following props:
 | `dropdown`        | string | `''`    |
 | `dropdownItem`    | string | `''`    |
 
-##
-
-<!-- prettier-ignore -->
 ## SearchCrow Function
 
 The onSearchCrow function is a utility function that can be used to perform a search on a list of items. It takes the following parameters:

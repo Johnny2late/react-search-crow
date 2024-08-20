@@ -12,7 +12,11 @@ function onSearchCrow(
 
   if (newValue === '') return []
 
-  const isSimpleArray = list.length <= 50 || (onlyVertexSearch && list.length <= 100)
+  let isSimpleArray
+
+  if (onlyVertexSearch) {
+    isSimpleArray = list.length <= 100
+  } else isSimpleArray = list.length <= 50
 
   if (isSimpleArray) {
     return iteratingSimpleArray(list, newValue, excludesKeys, onlyVertexSearch)
