@@ -1,6 +1,6 @@
 # react-search-crow
 
-React search crow
+React Search Crow
 
 <p align="center" dir="auto">
   <img src="https://raw.githubusercontent.com/Johnny2late/react-search-crow/585fe8aca6b60b70375bd880757819531e7de0c8/react-search-crow.png" width="250" height="250" alt="Crow">
@@ -29,7 +29,7 @@ npm instal react-search-crow
 ## Usage
 
 ```javascript
-import { SearchCrow } from 'searchCrow'
+import { SearchCrow } from 'react-search-crow'
 
 const MyComponent = () => {
   const handleSearchResults = (results) => {
@@ -118,7 +118,7 @@ The onSearchCrow function is a utility function that can be used to perform a se
 ## Usage
 
 ```javascript
-import { onSearchCrow } from 'searchCrow'
+import { onSearchCrow } from 'react-search-crow'
 
 onSearchCrow([...], 'search text' ['id'], false)
 ```
@@ -141,11 +141,6 @@ react: 18.3.1
 typescript: 4.9.5
 node: >=14.0.0
 ```
-
-## Development
-
-1. Clone the repository.
-2. Install the dependencies using npm install.
 
 ## Contribution
 
