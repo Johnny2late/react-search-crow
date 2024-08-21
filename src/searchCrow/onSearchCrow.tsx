@@ -30,7 +30,7 @@ function iteratingSimpleArray(
   value: string,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): Any[] {
+): Any {
   const result: Any[] = []
 
   function isType(item: Any, type: string) {
@@ -55,6 +55,7 @@ function iteratingSimpleArray(
         for (const key of keys) {
           if (!excludesKeys.includes(key)) {
             const toArrayItem = Array.isArray(midItem[key]) ? midItem[key] : [midItem[key]]
+
             const nestedResult = iteratingSimpleArray(
               toArrayItem,
               value,
@@ -80,7 +81,7 @@ function iteratinghHardArray(
   end: number,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): Any[] {
+): Any {
   if (start > end) return []
 
   const mid = Math.floor((start + end) / 2)
@@ -111,25 +112,29 @@ function iteratinghHardArray(
       }
     } else if (isType('object')) {
       const keys = Object.keys(midItem)
+      const matchedKeys = []
 
       for (const key of keys) {
-        if (onlyVertexSearch && Array.isArray(midItem[key])) break
+        if (onlyVertexSearch && Array.isArray(midItem[key])) continue
+
+        const toArrayItem = Array.isArray(midItem[key]) ? midItem[key] : [midItem[key]]
 
         if (!excludesKeys.includes(key)) {
           const nestedResult = iteratinghHardArray(
-            midItem[key],
+            toArrayItem,
             value,
             0,
-            0,
+            toArrayItem.length - 1,
             excludesKeys,
             onlyVertexSearch,
           )
-
           if (nestedResult.length > 0) {
-            result.push(list[mid])
-            break
+            matchedKeys.push(key)
           }
         }
+      }
+      if (matchedKeys.length > 0) {
+        result.push(list[mid])
       }
     }
   }
@@ -140,10 +145,10 @@ function iteratinghHardArray(
   return [...result, ...left, ...right]
 }
 
-function getMidItem(item: Any, excludes: string[]): Any {
-  for (const key of Object.keys(item)) {
-    if (!excludes.includes(key)) {
-      break
+function getMidItem(item: Any, excludes: string[]) {
+  if (typeof item === 'object') {
+    for (const key of Object.keys(item)) {
+      if (!excludes.includes(key)) break
     }
   }
   return item
@@ -153,4 +158,4 @@ function isIncludes(a: number | string, value: string): boolean {
   return a.toString().toLowerCase().replaceAll(' ', '').includes(value.replaceAll(' ', ''))
 }
 
-export { onSearchCrow }
+export { onSearchCrow, iteratingSimpleArray, iteratinghHardArray }

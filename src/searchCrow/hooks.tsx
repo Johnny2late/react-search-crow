@@ -104,12 +104,6 @@ function setStyles({
     else return getScrollParent(node.parentNode)
   }
 
-  function getSpaceBottom(): number {
-    if (fieldRef.current) {
-      return window.innerHeight - fieldRef.current.getBoundingClientRect().bottom - 10
-    } else return 0
-  }
-
   function getTopPosition(height: number, onTop: boolean): number {
     const spaceTop = fieldRef.current?.getBoundingClientRect().top || 0
     const spaceBottom = fieldRef.current?.getBoundingClientRect().bottom || 0
@@ -119,7 +113,7 @@ function setStyles({
   }
 
   if (fieldRef.current && listRef.current && isOpenList) {
-    const spaceBottom = getSpaceBottom()
+    const bottom = window.innerHeight - fieldRef.current.getBoundingClientRect().bottom - 10 || 0
     const listHeight = listRef.current.clientHeight
 
     if (initHeightRef.current === null) {
@@ -136,7 +130,7 @@ function setStyles({
     const height = listHeight
     let onTop = false
 
-    if (height > spaceBottom) onTop = true
+    if (height > bottom) onTop = true
 
     return {
       width: `${fieldRef.current.clientWidth}px`,
