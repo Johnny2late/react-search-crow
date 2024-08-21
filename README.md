@@ -23,7 +23,7 @@ The SearchCrow component is a React component that provides a search functionali
 ## Install
 
 ```
-npm instal react-search-crow
+npm install react-search-crow
 ```
 
 ## Usage
