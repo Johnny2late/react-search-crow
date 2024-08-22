@@ -30,7 +30,7 @@ function iteratingSimpleArray(
   value: string,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): Any {
+): Any[] {
   const result: Any[] = []
 
   function isType(item: Any, type: string) {
@@ -45,11 +45,13 @@ function iteratingSimpleArray(
         result.push(item)
       } else if (isType(midItem, 'number') && isIncludes(String(midItem), value)) {
         result.push(item)
-      } else if (Array.isArray(midItem)) {
+      } else if (Array.isArray(midItem) && !onlyVertexSearch) {
         const nestedResults = iteratingSimpleArray(midItem, value, excludesKeys, onlyVertexSearch)
 
-        if (nestedResults.length > 0) result.push(...nestedResults)
-      } else if (isType(midItem, 'object')) {
+        if (nestedResults.length > 0) {
+          result.push(...nestedResults)
+        }
+      } else if (isType(midItem, 'object') && !Array.isArray(midItem)) {
         const keys = Object.keys(midItem)
 
         for (const key of keys) {
@@ -62,6 +64,7 @@ function iteratingSimpleArray(
               excludesKeys,
               onlyVertexSearch,
             )
+
             if (nestedResult.length > 0) {
               result.push(item)
               break
@@ -81,7 +84,7 @@ function iteratinghHardArray(
   end: number,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-): Any {
+): Any[] {
   if (start > end) return []
 
   const mid = Math.floor((start + end) / 2)
@@ -97,7 +100,7 @@ function iteratinghHardArray(
       result.push(list[mid])
     } else if (isType('number') && isIncludes(midItem, value)) {
       result.push(list[mid])
-    } else if (Array.isArray(midItem)) {
+    } else if (Array.isArray(midItem) && !onlyVertexSearch) {
       const nestedResults = iteratinghHardArray(
         midItem,
         value,
@@ -110,7 +113,7 @@ function iteratinghHardArray(
       if (nestedResults.length > 0) {
         result.push(...nestedResults)
       }
-    } else if (isType('object')) {
+    } else if (isType('object') && !Array.isArray(midItem)) {
       const keys = Object.keys(midItem)
       const matchedKeys = []
 
