@@ -3,6 +3,41 @@ import { iteratingSimpleArray, iteratinghHardArray } from '../searchCrow/onSearc
 // iteratingSimpleArray
 
 describe('iteratingSimpleArray', () => {
+  it('should return the correct results for a number array', () => {
+    const list = [1, 2, 3, 4, 33, [333]]
+    const results = iteratingSimpleArray(list, '3', [], false)
+
+    expect(results).toEqual([3, 33, 333])
+  })
+
+  it('should return the correct results for a number array onlyVertexSearch', () => {
+    const list = [1, 2, 3, 4, 33, [333]]
+    const results = iteratingSimpleArray(list, '3', [], true)
+
+    expect(results).toEqual([3, 33])
+  })
+
+  it('should return the correct results for a string array', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratingSimpleArray(list, '1', [], false)
+
+    expect(results).toEqual(['1', 'text 1', 'text1'])
+  })
+
+  it('should return the correct results for a string array', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratingSimpleArray(list, 'text', [], false)
+
+    expect(results).toEqual(['text 1', 'text', 'text2', 'text1'])
+  })
+
+  it('should return the correct results for a string array onlyVertexSearch', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratingSimpleArray(list, '1', [], true)
+
+    expect(results).toEqual(['1', 'text 1'])
+  })
+
   it('should return the correct results for a simple array', () => {
     const list = [
       { name: 'John Doe', age: 30 },
@@ -56,11 +91,57 @@ describe('iteratingSimpleArray', () => {
 
     expect(results).toEqual([])
   })
+
+  it('should handle onlyVertexSearch', () => {
+    const list = [
+      { name: 'John Doe', hobbies: [{ type: 'reading' }, { type: 'gardening' }] },
+      { name: 'Jane Smith', hobbies: [{ type: 'swimming' }, { type: 'hiking' }] },
+      { name: 'Bob Johnson', hobbies: [{ type: 'painting' }, { type: 'cooking' }] },
+    ]
+    const results = iteratinghHardArray(list, 'king', 0, list.length - 1, [], true)
+
+    expect(results).toEqual([])
+  })
 })
 
 // iteratinghHardArray
 
 describe('iteratinghHardArray', () => {
+  it('should return the correct results for a number array', () => {
+    const list = [1, 2, 3, 4, 33, [333]]
+    const results = iteratinghHardArray(list, '3', 0, list.length - 1, [], false)
+
+    expect(results).toEqual([3, 33, 333])
+  })
+
+  it('should return the correct results for a number array onlyVertexSearch', () => {
+    const list = [1, 2, 3, 4, 33, [333]]
+    const results = iteratinghHardArray(list, '3', 0, list.length - 1, [], true)
+
+    expect(results).toEqual([3, 33])
+  })
+
+  it('should return the correct results for a string array', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratinghHardArray(list, '1', 0, list.length - 1, [], false)
+
+    expect(results).toEqual(['1', 'text 1', 'text1'])
+  })
+
+  it('should return the correct results for a string array', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratinghHardArray(list, 'text', 0, list.length - 1, [], false)
+
+    expect(results).toEqual(['text', 'text 1', 'text2', 'text1'])
+  })
+
+  it('should return the correct results for a string array onlyVertexSearch', () => {
+    const list = ['1', 'text 1', 'text', 'text2', ['text1']]
+    const results = iteratinghHardArray(list, '1', 0, list.length - 1, [], true)
+
+    expect(results).toEqual(['1', 'text 1'])
+  })
+
   it('should handle nested arrays', () => {
     const list = [
       { name: 'John Doe', hobbies: ['reading', 'gardening'] },
@@ -95,6 +176,17 @@ describe('iteratinghHardArray', () => {
       { name: 'John Doe', hobbies: ['reading', 'gardening'] },
       { name: 'Jane Smith', hobbies: ['swimming', 'hiking'] },
       { name: 'Bob Johnson', hobbies: ['painting', 'cooking'] },
+    ]
+    const results = iteratinghHardArray(list, 'king', 0, list.length - 1, [], true)
+
+    expect(results).toEqual([])
+  })
+
+  it('should handle onlyVertexSearch', () => {
+    const list = [
+      { name: 'John Doe', hobbies: [{ type: 'reading' }, { type: 'gardening' }] },
+      { name: 'Jane Smith', hobbies: [{ type: 'swimming' }, { type: 'hiking' }] },
+      { name: 'Bob Johnson', hobbies: [{ type: 'painting' }, { type: 'cooking' }] },
     ]
     const results = iteratinghHardArray(list, 'king', 0, list.length - 1, [], true)
 

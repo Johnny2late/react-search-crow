@@ -33,17 +33,14 @@ describe('SearchCrow', () => {
   })
 
   it('should render the component with autoSearch = true', () => {
-    render(<SearchCrow {...defaultProps} autoSearch={false} />)
+    render(<SearchCrow {...defaultProps} autoSearch />)
     expect(screen.getByLabelText('Search')).toBeInTheDocument()
     expect(screen.getByPlaceholderText('text...')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument()
 
     const input = screen.getByPlaceholderText('text...')
     fireEvent.change(input, { target: { value: 'Item 1' } })
 
     expect(screen.queryByText('Item 1')).not.toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: 'Search' }))
 
     waitFor(() => expect(screen.getByText('Item 1')).toBeInTheDocument())
   })
