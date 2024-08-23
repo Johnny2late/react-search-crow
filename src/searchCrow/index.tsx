@@ -72,12 +72,13 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
 
     useImperativeHandle(ref, () => ({
       handleItem(el: Any, val: string) {
-        if (children && el) handleItem(el, val)
+        if (children && el) onItem(el, val)
       },
     }))
 
     const handleSearch = (results: Any[] = [], val: string) => {
       if (onLoad) onLoad(true)
+
       setLoad(true)
       setErrorText(null)
 
@@ -92,6 +93,7 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
       setTimeout(() => {
         if (onLoad) onLoad(false)
         if (onSearchResults) onSearchResults(result)
+
         setSearchResults(result)
         setLoad(false)
       }, debounce)
@@ -111,15 +113,15 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
     const getValue = (el: Any) => {
       if (typeof el === 'object') {
         if (keysShowValue.length) {
-          return keysShowValue.reduce((result, key) => {
-            if (el[key] !== undefined && el[key] !== '') {
-              if (result === '') return el[key].toString()
-              else return `${result}${separatorValue}${el[key].toString()}`
-            }
-            return result
-          }, '')
-        } else return JSON.stringify(el)
-      } else return el.toString()
+          return keysShowValue
+            .map(key => el[key])
+            .filter(value => value !== undefined && value !== '')
+            .join(separatorValue)
+        } else {
+          return JSON.stringify(el)
+        }
+      }
+      return el.toString()
     }
 
     const getTargetValue = () => {
@@ -135,7 +137,7 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
       return isEmpty || !addClasses[key] ? '' : ` ${addClasses[key]}`
     }
 
-    const handleItem = (el: Any, val?: string) => {
+    const onItem = (el: Any, val?: string) => {
       if (onSelect) onSelect(el)
 
       let newValue = ''
@@ -163,6 +165,7 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
     const handleClear = () => {
       if (onClear) onClear()
       if (onSearchResults) onSearchResults([])
+
       setErrorText(null)
       setSearchValue('')
       setSearchResults([])
@@ -181,6 +184,51 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
       if (autoSearch && !selectionItem) onSearch(getTargetValue())
     }, [searchValue, selectionItem])
 
+    const renderButton = () => {
+      if (!autoSearch && withBtn) {
+        return (
+          <button
+            data-testid="search-button"
+            className={`sc-button${getClass('button')}`}
+            onClick={() => onSearch(getTargetValue())}
+            disabled={load || !searchValue || disabled}
+          >
+            {withLoader && load ? loaderText : btnText}
+          </button>
+        )
+      }
+      return (
+        withLoader && <span className={`sc-loader${getClass('loader')}`}>{load && loaderText}</span>
+      )
+    }
+
+    const renderDropdown = () => (
+      <div
+        className={`sc-dropdown-wrapper${getClass('dropdownWrapper')}${(searchResults.length > 0 || errorText) && isOpenList ? ' sc-dropdown--open' : ''}`}
+        style={{ ...dropdownStyles }}
+        ref={listRef}
+      >
+        {children ? (
+          <>{children}</>
+        ) : (
+          <div className={`sc-dropdown${getClass('dropdown')}`}>
+            {errorText
+              ? errorText
+              : searchResults.length > 0 &&
+                searchResults.map((el: Any, index: number) => (
+                  <div
+                    key={keyId && el[keyId] ? el[keyId] : index}
+                    className={`sc-dropdown-item${disabledSelect ? ' sc-dropdown-item--disabled' : ''}${getClass('dropdownItem')}`}
+                    onClick={() => (!disabledSelect ? onItem(el) : () => {})}
+                  >
+                    {getValue(el)}
+                  </div>
+                ))}
+          </div>
+        )}
+      </div>
+    )
+
     return (
       <div className={`sc-wrapper${getClass('wrapper')}`} ref={searchRef}>
         {label && (
@@ -189,8 +237,8 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
           </div>
         )}
         <form
-          onSubmit={event => {
-            event.preventDefault()
+          onSubmit={e => {
+            e.preventDefault()
             if (!disabled) onSearch(getTargetValue())
           }}
           className={`sc-input-form${getClass('inputForm')}`}
@@ -212,48 +260,10 @@ const SearchCrow: FC<SearchCrowProps> = forwardRef(
             )}
           </div>
 
-          {!autoSearch && withBtn ? (
-            <button
-              data-testid="search-button"
-              className={`sc-button${getClass('button')}`}
-              onClick={() => onSearch(getTargetValue())}
-              disabled={load || !searchValue || disabled}
-            >
-              {withLoader && load ? loaderText : btnText}
-            </button>
-          ) : (
-            withLoader && (
-              <span className={`sc-loader${getClass('loader')}`}>{load && loaderText}</span>
-            )
-          )}
+          {renderButton()}
         </form>
 
-        {withDropdown && (
-          <div
-            className={`sc-dropdown-wrapper${getClass('dropdownWrapper')}${(searchResults.length > 0 || errorText) && isOpenList ? ' sc-dropdown--open' : ''}`}
-            style={{ ...dropdownStyles }}
-            ref={listRef}
-          >
-            {children ? (
-              <>{children}</>
-            ) : (
-              <div className={`sc-dropdown${getClass('dropdown')}`}>
-                {errorText
-                  ? errorText
-                  : searchResults.length > 0 &&
-                    searchResults.map((el: Any, index: number) => (
-                      <div
-                        key={keyId && el[keyId] ? el[keyId] : index + el.toString()}
-                        className={`sc-dropdown-item${disabledSelect ? 'sc-dropdown-item--disabled' : ''}${getClass('dropdownItem')}`}
-                        onClick={() => (!disabledSelect ? handleItem(el) : () => {})}
-                      >
-                        {getValue(el)}
-                      </div>
-                    ))}
-              </div>
-            )}
-          </div>
-        )}
+        {withDropdown && renderDropdown()}
       </div>
     )
   },
