@@ -12,40 +12,10 @@ function onSearchCrow(
 
   if (newValue === '') return []
 
-  const isSimpleArray = onlyVertexSearch ? list.length <= 100 : list.length <= 50
-
-  return isSimpleArray
-    ? iteratingSimpleArray(list, newValue, excludesKeys, onlyVertexSearch)
-    : iteratingHardArray(list, newValue, 0, list.length - 1, excludesKeys, onlyVertexSearch)
+  return iteratingArray(list, newValue, 0, list.length - 1, excludesKeys, onlyVertexSearch)
 }
 
-function iteratingSimpleArray(
-  list: Any[],
-  value: string,
-  excludesKeys: string[],
-  onlyVertexSearch: boolean,
-): Any[] {
-  const result: Any[] = []
-
-  for (const item of list) {
-    const midItem = getMidItem(item, excludesKeys)
-
-    if (midItem !== null) {
-      if (isMatch(midItem, value)) {
-        result.push(item)
-      } else if (Array.isArray(midItem) && !onlyVertexSearch) {
-        result.push(...iteratingSimpleArray(midItem, value, excludesKeys, onlyVertexSearch))
-      } else if (typeof midItem === 'object' && !Array.isArray(midItem)) {
-        if (checkNestedObjects(midItem, value, excludesKeys, onlyVertexSearch, true)) {
-          result.push(item)
-        }
-      }
-    }
-  }
-  return result
-}
-
-function iteratingHardArray(
+function iteratingArray(
   list: Any[],
   value: string,
   start: number,
@@ -59,22 +29,17 @@ function iteratingHardArray(
   const midItem = getMidItem(list[mid], excludesKeys)
   const result: Any[] = []
 
-  if (midItem !== null) {
+  if (midItem) {
+    const itemIsArray = Array.isArray(midItem)
+
     if (isMatch(midItem, value)) {
       result.push(list[mid])
-    } else if (Array.isArray(midItem) && !onlyVertexSearch) {
+    } else if (itemIsArray && !onlyVertexSearch) {
       result.push(
-        ...iteratingHardArray(
-          midItem,
-          value,
-          0,
-          midItem.length - 1,
-          excludesKeys,
-          onlyVertexSearch,
-        ),
+        ...iteratingArray(midItem, value, 0, midItem.length - 1, excludesKeys, onlyVertexSearch),
       )
-    } else if (typeof midItem === 'object' && !Array.isArray(midItem)) {
-      if (checkNestedObjects(midItem, value, excludesKeys, onlyVertexSearch, false)) {
+    } else if (typeof midItem === 'object' && !itemIsArray) {
+      if (checkNestedObjects(midItem, value, excludesKeys, onlyVertexSearch)) {
         result.push(list[mid])
       }
     }
@@ -82,8 +47,8 @@ function iteratingHardArray(
 
   return [
     ...result,
-    ...iteratingHardArray(list, value, start, mid - 1, excludesKeys, onlyVertexSearch),
-    ...iteratingHardArray(list, value, mid + 1, end, excludesKeys, onlyVertexSearch),
+    ...iteratingArray(list, value, start, mid - 1, excludesKeys, onlyVertexSearch),
+    ...iteratingArray(list, value, mid + 1, end, excludesKeys, onlyVertexSearch),
   ]
 }
 
@@ -92,36 +57,34 @@ function checkNestedObjects(
   value: string,
   excludesKeys: string[],
   onlyVertexSearch: boolean,
-  isSimple: boolean,
 ): boolean {
   const keys = Object.keys(midItem)
-  const nestedResults = []
+  const nestedResults: Any[] = []
 
   for (const key of keys) {
-    if (!excludesKeys.includes(key)) {
-      const currentItem = midItem[key]
+    if (excludesKeys.includes(key)) continue
 
-      if (onlyVertexSearch && Array.isArray(currentItem)) continue
+    const currentItem = midItem[key]
+    const isArray = Array.isArray(currentItem)
 
-      if (!Array.isArray(currentItem)) {
-        if (typeof currentItem !== 'object') {
-          if (isMatch(currentItem, value)) nestedResults.push(currentItem)
-        } else {
-          if (checkNestedObjects(currentItem, value, excludesKeys, onlyVertexSearch, isSimple)) {
-            nestedResults.push(currentItem)
-          }
-        }
-      } else {
-        const results = isSimple
-          ? iteratingSimpleArray(currentItem, value, excludesKeys, onlyVertexSearch)
-          : iteratingHardArray(
-              currentItem,
-              value,
-              0,
-              currentItem.length - 1,
-              excludesKeys,
-              onlyVertexSearch,
-            )
+    if (onlyVertexSearch && isArray) continue
+
+    if (typeof currentItem !== 'object') {
+      if (isMatch(currentItem, value)) {
+        nestedResults.push(currentItem)
+      }
+    } else {
+      if (checkNestedObjects(currentItem, value, excludesKeys, onlyVertexSearch)) {
+        nestedResults.push(currentItem)
+      } else if (isArray) {
+        const results = iteratingArray(
+          currentItem,
+          value,
+          0,
+          currentItem.length - 1,
+          excludesKeys,
+          onlyVertexSearch,
+        )
 
         if (results.length > 0) {
           nestedResults.push(currentItem)
@@ -129,6 +92,7 @@ function checkNestedObjects(
       }
     }
   }
+
   return nestedResults.length > 0
 }
 
@@ -152,4 +116,4 @@ function isIncludes(item: number | string, value: string): boolean {
   return item.toString().toLowerCase().replace(/\s+/g, '').includes(value.replace(/\s+/g, ''))
 }
 
-export { onSearchCrow, iteratingSimpleArray, iteratingHardArray }
+export { onSearchCrow, iteratingArray }

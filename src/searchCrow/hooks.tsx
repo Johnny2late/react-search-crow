@@ -93,25 +93,6 @@ function setStyles({
   initHeightRef: React.RefObject<number | null>
   setParent: (parent: HTMLElement | null) => void
 }): StylesPositionTypes {
-  function getScrollParent(node: {
-    scrollHeight: number
-    clientHeight: number
-    parentNode: Any
-  }): Any {
-    if (node == null) return null
-
-    if (node.scrollHeight > node.clientHeight) return node
-    else return getScrollParent(node.parentNode)
-  }
-
-  function getTopPosition(height: number, onTop: boolean): number {
-    const spaceTop = fieldRef.current?.getBoundingClientRect().top || 0
-    const spaceBottom = fieldRef.current?.getBoundingClientRect().bottom || 0
-
-    if (onTop) return spaceTop - height - 5
-    else return spaceBottom + 5
-  }
-
   if (fieldRef.current && listRef.current && isOpenList) {
     const bottom = window.innerHeight - fieldRef.current.getBoundingClientRect().bottom - 10 || 0
     const listHeight = listRef.current.clientHeight
@@ -128,17 +109,40 @@ function setStyles({
     else setParent(null)
 
     const height = listHeight
-    let onTop = false
+    let isOnTop = false
 
-    if (height > bottom) onTop = true
+    if (height > bottom) isOnTop = true
 
     return {
       width: `${fieldRef.current.clientWidth}px`,
-      top: `${getTopPosition(listHeight, onTop)}px`,
+      top: `${getTopPosition(listHeight, isOnTop, fieldRef)}px`,
     }
   }
 
   return { width: '', top: '' }
+}
+
+function getScrollParent(node: {
+  scrollHeight: number
+  clientHeight: number
+  parentNode: Any
+}): Any {
+  if (node == null) return null
+
+  if (node.scrollHeight > node.clientHeight) return node
+  else return getScrollParent(node.parentNode)
+}
+
+function getTopPosition(
+  height: number,
+  onTop: boolean,
+  fieldRef: React.RefObject<HTMLDivElement>,
+): number {
+  const spaceTop = fieldRef.current?.getBoundingClientRect().top || 0
+  const spaceBottom = fieldRef.current?.getBoundingClientRect().bottom || 0
+
+  if (onTop) return spaceTop - height - 5
+  else return spaceBottom + 5
 }
 
 // Click Outside

@@ -1,6 +1,6 @@
 {
   "name": "react-search-crow",
-  "version": "0.3.9",
+  "version": "0.4.0",
   "description": "This Crow will find everything",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
